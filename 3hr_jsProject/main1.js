@@ -28,7 +28,7 @@ form.addEventListener("submit", (e) => {
     // add classes to the delete button element
     deletBtn.className = "btn btn-danger btn-sm float-right delete";
     // Append text node
-    deletBtn.appendChild(document.createTextNode("X "));
+    deletBtn.appendChild(document.createTextNode("Delete"));
     // Append button to li
     p.appendChild(deletBtn);
 
@@ -42,7 +42,7 @@ form.addEventListener("submit", (e) => {
     // Add clases to edit button
     editBtn.className = "btn btn-danger btn-sm float-right delete";
     // Append text node
-    editBtn.appendChild(document.createTextNode("edit"));
+    editBtn.appendChild(document.createTextNode("Edit"));
     // Append button to li
     p.appendChild(editBtn);
     p.addEventListener("click", () => {

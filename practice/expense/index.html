@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker</title>
+    <style>
+        submit:hover{
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Expense Tracker</h1>
+    </header>
+    <form action="" id = 'container'>
+        <label htmlFor="">Expense</label>
+        <input type="text" id='expense' />
+        <label htmlFor="">Description</label>
+        <input type="text" id='description' />
+        <label htmlFor="">category</label>
+        <select name="" id="selector">
+            <option>Fuel</option>
+            <option>Movies</option>
+            <option>Hospital</option>
+            <option>Essential</option>
+        </select> &nbsp&nbsp&nbsp
+        <span><input type="submit" name="submit" id="submit" value="Submit"></span>
+    </form>
+    <ul id = "listOfPeople"></ul>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
