@@ -31,6 +31,7 @@ function getPosts() {
 function createPost(post) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
+      //updateLastUserActivity();
       posts.push({ ...post, createdAt: d });
       const error = false;
 
@@ -46,6 +47,7 @@ function createPost(post) {
 function deletePost(post) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
+      updateLastUserActivity();
       posts.pop({ ...post });
       //const error = true;
 
@@ -56,13 +58,38 @@ function deletePost(post) {
       }
     }, 1000);
   });
+
+  function updateLastUserActivity() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        posts.updateLastUserActivity = new Date().getTime();
+        resolve(post.updateLastUserActivity);
+      }, 1000);
+    });
+  }
 }
 
-// createPost({ title: "post Four", body: "this is post 3" })
-//   .then(getPosts)
+// function userUpdatePost() {
+//   Promise.all([createPost, updateLastUserActivity])
+//     .then(([createPostresolves, updateLastUserActivity]) => {
+//       console.log(updateLastUserActivity);
+//     })
+//     .catch((err) => console.log(err));
+// }
+createPost({ title: "post Four", body: "this is post 3" }).then(getPosts);
 //   .catch((err) => console.log(err));
 
 deletePost().catch((err) => console.log(err));
 deletePost().catch((err) => console.log(err));
 deletePost().catch((err) => console.log(err));
 deletePost().catch((err) => console.log(err));
+
+// Promise.all
+// const promise1 = Promise.resolve("Hello World");
+// const promise2 = 10;
+// const promise3 = new Promise((resolve, reject) => {
+//   setTimeout(resolve, 5000, "goodbye");
+// });
+// Promise.all([promise1, promise2, promise3]).then((values) => {
+//   console.log(values);
+// });
