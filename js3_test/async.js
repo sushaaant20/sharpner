@@ -4,7 +4,7 @@ and saves it for the future use
 It also displays the data entered by the user on the screen
 
 */
-function addNewExpense(e) {
+async function addNewExpense(e) {
   e.preventDefault();
   const form = new FormData(e.target);
 
@@ -15,45 +15,57 @@ function addNewExpense(e) {
   };
 
   console.log(expenseDetails);
-  axios
-    .post(
-      "https://crudcrud.com/api/01eba932762f43fbb6e087074fe3b8b6/expense",
-      expenseDetails
-    )
-    .then((response) => {
-      addNewExpensetoUI(response.data);
-    })
-    .catch((err) => console.log(err));
+  //   axios
+  //     .post(
+  //       "https://crudcrud.com/api/01eba932762f43fbb6e087074fe3b8b6/expense",
+  //       expenseDetails
+  //     )
+  //     .then((response) => {
+  //       addNewExpensetoUI(response.data);
+  //     })
+  //     .catch((err) => console.log(err));
+  await fetch(
+    "https://crudcrud.com/api/01eba932762f43fbb6e087074fe3b8b6/expense"
+  ).then((response) => {
+    //addNewExpensetoUI(response.data);
+    console.log(response.data);
+  });
+
+  //   const data = await res.json();
+  //   console.log(data);
 }
 
 /*
 below code is run when the window is reloaded,
 it fetches the data from the backend and serves on the screen
 */
-window.addEventListener("DOMContentLoaded", (event) => {
-  axios
-    .get("https://crudcrud.com/api/01eba932762f43fbb6e087074fe3b8b6/expense")
-    .then((res) => {
-      res.data.forEach((expense) => {
-        const parentElement = document.getElementById("listOfExpenses");
-        const expenseElemId = `expense-${expense._id}`;
-        parentElement.innerHTML += `
-        <li id=${expenseElemId}>
-            ₹
-${expense.expenseamount} - ${expense.category} - ${expense.description}
-            <button onclick=deleteExpense('${expense._id}')>
-                Delete 
-            </button>
-            <button onclick=editExpense('${expense.expenseamount}','${expense.category}','${expense.description}','${expense._id}')>
-                Edit
-            </button>
-        </li>`;
-        //console.log(expense._id);
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+window.addEventListener("DOMContentLoaded", async (event) => {
+  const res = await fetch(
+    "https://crudcrud.com/api/01eba932762f43fbb6e087074fe3b8b6/expense"
+  ).then((response) => {
+    addNewExpensetoUI(response.data);
+    //     .then((res) => {
+    //       data((expense) => {
+    //         const parentElement = document.getElementById("listOfExpenses");
+    //         const expenseElemId = `expense-${expense._id}`;
+    //         parentElement.innerHTML += `
+    //         <li id=${expenseElemId}>
+    //             ₹
+    // ${expense.expenseamount} - ${expense.category} - ${expense.description}
+    //             <button onclick=deleteExpense('${expense._id}')>
+    //                 Delete
+    //             </button>
+    //             <button onclick=editExpense('${expense.expenseamount}','${expense.category}','${expense.description}','${expense._id}')>
+    //                 Edit
+    //             </button>
+    //         </li>`;
+    //         //console.log(expense._id);
+    //       });
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
+  });
 });
 
 /*
@@ -73,11 +85,13 @@ function editExpense(expenseamount, category, description, expenseId) {
 Delete user function, it deletes data from both backend and frontend
  and accordingly updates everything
 */
-function deleteExpense(expenseid) {
-  axios
-    .delete(
-      `https://crudcrud.com/api/01eba932762f43fbb6e087074fe3b8b6/expense/${expenseid}`
-    )
+async function deleteExpense(expenseid) {
+  await fetch(
+    `https://crudcrud.com/api/01eba932762f43fbb6e087074fe3b8b6/expense/${expenseid}`,
+    {
+      method: "PUT",
+    }
+  )
     .then((response) => {
       console.log(response);
       removeExpensefromUI(expenseid);
@@ -90,7 +104,7 @@ function deleteExpense(expenseid) {
 
 /*
 ===============================================================================================================================
-This function is used in addNewExpense function to update the screen with the 
+This function is used in addNewExpense function to update the screen with the
 expense details entered by the user.
 */
 function addNewExpensetoUI(expense) {
@@ -118,3 +132,12 @@ function removeExpensefromUI(expenseid) {
   const expenseElemId = `expense-${expenseid}`;
   document.getElementById(expenseElemId).remove();
 }
+
+async function fetchData() {
+  const res = await fetch(
+    "https://crudcrud.com/api/01eba932762f43fbb6e087074fe3b8b6/expense"
+  );
+  const data = await res.json();
+  console.log(data);
+}
+fetchData();
