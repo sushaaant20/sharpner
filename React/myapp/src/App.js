@@ -1,4 +1,6 @@
 import ExpenseItem from "./components/Expenses/ExpenseItem";
+import Card from "./components/UI/Card";
+import "./components/Expenses/Expenses.css";
 const App = () => {
   const expenses = [
     {
@@ -32,7 +34,7 @@ const App = () => {
   ];
   expenses.forEach(() => {});
   return (
-    <div>
+    <Card className="expenses">
       <h2>Expenses</h2>
       {/* Loop using map */}
       {expenses.map((expenses, index) => {
@@ -47,27 +49,7 @@ const App = () => {
           </div>
         );
       })}
-      {/* {/* <ExpenseItem
-        title={expenses[0].title}
-        amount={expenses[0].amount}
-        location={expenses[0].location}
-      />
-      <ExpenseItem
-        title={expenses[1].title}
-        amount={expenses[1].amount}
-        location={expenses[1].location}
-      />
-      <ExpenseItem
-        title={expenses[2].title}
-        amount={expenses[2].amount}
-        location={expenses[2].location}
-      />
-      <ExpenseItem
-        title={expenses[3].title}
-        amount={expenses[3].amount}
-        location={expenses[3].location} 
-      /> */}
-    </div>
+    </Card>
   );
 };
 

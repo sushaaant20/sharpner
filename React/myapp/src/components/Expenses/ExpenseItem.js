@@ -1,21 +1,21 @@
 import ExpenseDate from "./ExpenseDate";
-import ExpenseDetails from "./ExpenseDetails";
+import Card from "../UI/Card";
 import "./ExpenseItem.css";
 
 const ExpenseItem = (props) => {
+  // delete button function
+  const clickHandler = () => {
+    console.log("Delete Button Clicked!");
+  };
   return (
-    <div className="expense-item">
-      <div>
-        <ExpenseDate date={props.date} />
+    <Card className="expense-item">
+      <ExpenseDate date={props.date} />
+      <div className="expense-item__description">
+        <h2>{props.title}</h2>
+        <div className="expense-item__price">${props.amount}</div>
       </div>
-      <div>
-        <ExpenseDetails
-          title={props.title}
-          amount={props.amount}
-          location={props.location}
-        />
-      </div>
-    </div>
+      <button onClick={clickHandler}>Delete Expense</button>
+    </Card>
   );
 };
 export default ExpenseItem;
