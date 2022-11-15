@@ -32,19 +32,18 @@ const App = () => {
       location: "london",
     },
   ];
-  expenses.forEach(() => {});
   return (
     <Card className="expenses">
       <h2>Expenses</h2>
       {/* Loop using map */}
       {expenses.map((expenses, index) => {
         return (
-          <div key={index}>
+          <div id={expenses.id} key={index}>
             <ExpenseItem
               title={expenses.title}
+              id={expenses.id}
               amount={expenses.amount}
               date={expenses.date}
-              location={expenses.location}
             />
           </div>
         );
