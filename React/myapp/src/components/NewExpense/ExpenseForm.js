@@ -6,6 +6,7 @@ const ExpenseForm = () => {
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
+
   const titleChangeHandler = (event) => {
     setEnteredTitle(event.target.value);
   };
@@ -15,6 +16,19 @@ const ExpenseForm = () => {
   const dateChangeHandler = (event) => {
     setEnteredDate(event.target.value);
   };
+
+  //Submit Button event handler function
+  const submitHandler = (event) => {
+    event.preventDefault();
+    const expenseData = {
+      title: enteredTitle,
+      amount: enteredAmount,
+      date: new Date(enteredDate),
+    };
+    // logs expense data on the screen
+    console.log(expenseData);
+  };
+
   return (
     <form action="">
       <div className="new-expense__controls">
@@ -42,7 +56,9 @@ const ExpenseForm = () => {
         </div>
       </div>
       <div className="new-expense__actions">
-        <button type="submit">Add Expense</button>
+        <button type="submit" onClick={submitHandler}>
+          Add Expense
+        </button>
       </div>
     </form>
   );
