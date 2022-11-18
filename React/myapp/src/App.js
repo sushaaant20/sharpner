@@ -1,6 +1,7 @@
 import ExpenseItem from "./components/Expenses/ExpenseItem";
 import Card from "./components/UI/Card";
 import "./components/Expenses/Expenses.css";
+import NewExpense from "./components/NewExpense/NewExpense";
 const App = () => {
   const expenses = [
     {
@@ -35,6 +36,7 @@ const App = () => {
   return (
     <Card className="expenses">
       <h2>Expenses</h2>
+      <NewExpense />
       {/* Loop using map */}
       {expenses.map((expenses, index) => {
         return (
