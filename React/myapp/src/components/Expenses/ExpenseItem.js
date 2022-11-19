@@ -8,10 +8,10 @@ const ExpenseItem = (props) => {
   const [amount, setAmount] = useState(props.amount);
 
   //amount to $100
-  const changeAmount = () => {
-    setAmount("100");
-    console.log("Amount Changed");
-  };
+  // const changeAmount = () => {
+  //   setAmount("100");
+  //   console.log("Amount Changed");
+  // };
   // clickHandler function
   const clickHandler = () => {
     setTitle("UPDATED");
@@ -19,11 +19,11 @@ const ExpenseItem = (props) => {
   };
 
   // delete button function
-  const removeExpense = () => {
-    console.log(props.id);
-    const element = document.getElementById(props.id);
-    element.parentNode.removeChild(element);
-  };
+  // const removeExpense = () => {
+  //   console.log(props.id);
+  //   const element = document.getElementById(props.id);
+  //   element.parentNode.removeChild(element);
+  // };
   return (
     <Card id={props.id} className="expense-item">
       <ExpenseDate date={props.date} />
@@ -31,9 +31,7 @@ const ExpenseItem = (props) => {
         <h2>{title}</h2>
         <div className="expense-item__price">${amount}</div>
       </div>
-      <button onClick={removeExpense}>Delete</button>
       <button onClick={clickHandler}>ChangeTitle</button>
-      <button onClick={changeAmount}>Amount</button>
     </Card>
   );
 };

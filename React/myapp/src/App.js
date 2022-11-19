@@ -1,7 +1,7 @@
-import ExpenseItem from "./components/Expenses/ExpenseItem";
-import Card from "./components/UI/Card";
-import "./components/Expenses/Expenses.css";
+import React from "react";
+
 import NewExpense from "./components/NewExpense/NewExpense";
+import Expenses from "./components/Expenses/Expenses";
 const App = () => {
   const expenses = [
     {
@@ -39,24 +39,10 @@ const App = () => {
     console.log(expenses);
   };
   return (
-    <Card className="expenses">
-      <h2>Expenses</h2>
+    <div>
       <NewExpense onAddExpense={addExpenseHandler} />
-      {/* Loop using map */}
-      {expenses.map((expenses, index) => {
-        return (
-          <div id={expenses.id} key={index}>
-            <ExpenseItem
-              title={expenses.title}
-              id={expenses.id}
-              amount={expenses.amount}
-              date={expenses.date}
-            />
-          </div>
-        );
-      })}
-    </Card>
+      <Expenses items={expenses} />
+    </div>
   );
 };
-
 export default App;
