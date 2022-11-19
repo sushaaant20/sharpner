@@ -33,10 +33,15 @@ const App = () => {
       location: "london",
     },
   ];
+
+  const addExpenseHandler = (expenses) => {
+    console.log("from APP.js");
+    console.log(expenses);
+  };
   return (
     <Card className="expenses">
       <h2>Expenses</h2>
-      <NewExpense />
+      <NewExpense onAddExpense={addExpenseHandler} />
       {/* Loop using map */}
       {expenses.map((expenses, index) => {
         return (
