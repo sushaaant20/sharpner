@@ -1,20 +1,27 @@
 /* 
 Holds logic to add New User 
 */
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import ErrorModal from "../UI/ErrorModal";
 import classes from "./AddUser.module.css";
 
 const AddUser = (props) => {
+  const nameInputRef = useRef();
+  const ageInputRef = useRef();
+
   const [enteredUsername, setEnteredUsername] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
+  const [enteredCollege, setCollege] = useState("");
+
   const [error, setError] = useState();
 
   //form submit function
   const addUserHandler = (event) => {
     event.preventDefault();
+    console.log(nameInputRef, ageInputRef);
+
     if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
       setError({
         title: "Invalid Input",
@@ -29,10 +36,11 @@ const AddUser = (props) => {
       });
       return;
     }
-    props.onAddUser(enteredUsername, enteredAge);
+    props.onAddUser(enteredUsername, enteredAge, enteredCollege);
     // console.log(enteredUsername, enteredAge);
     setEnteredAge("");
     setEnteredUsername("");
+    setCollege("");
   };
 
   const userNameChangeHandler = (event) => {
@@ -40,6 +48,9 @@ const AddUser = (props) => {
   };
   const ageChangeHandler = (event) => {
     setEnteredAge(event.target.value);
+  };
+  const collegeNameHandler = (event) => {
+    setCollege(event.target.value);
   };
 
   const errorHandler = () => {
@@ -63,6 +74,15 @@ const AddUser = (props) => {
             id="username"
             value={enteredUsername}
             onChange={userNameChangeHandler}
+            ref={nameInputRef}
+          />
+          <label htmlFor="username">College</label>
+          <input
+            type="text"
+            id="college"
+            value={enteredCollege}
+            onChange={collegeNameHandler}
+            ref={nameInputRef}
           />
           <label htmlFor="age">Age (Years)</label>
           <input
@@ -70,6 +90,7 @@ const AddUser = (props) => {
             id="age"
             value={enteredAge}
             onChange={ageChangeHandler}
+            ref={ageInputRef}
           />
           <Button type="submit">Add User</Button>
         </form>
