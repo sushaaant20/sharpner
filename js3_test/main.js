@@ -14,16 +14,16 @@ function addNewExpense(e) {
     category: form.get("category"),
   };
 
-  console.log(expenseDetails);
   axios
     .post(
-      "https://crudcrud.com/api/01eba932762f43fbb6e087074fe3b8b6/expense",
+      "https://crudcrud.com/api/ec4cd73c76e74460a545a57a3832ef34/expense",
       expenseDetails
     )
     .then((response) => {
       addNewExpensetoUI(response.data);
     })
     .catch((err) => console.log(err));
+  console.log(expenseDetails);
 }
 
 /*
@@ -32,7 +32,7 @@ it fetches the data from the backend and serves on the screen
 */
 window.addEventListener("DOMContentLoaded", (event) => {
   axios
-    .get("https://crudcrud.com/api/01eba932762f43fbb6e087074fe3b8b6/expense")
+    .get("https://crudcrud.com/api/ec4cd73c76e74460a545a57a3832ef34/expense")
     .then((res) => {
       res.data.forEach((expense) => {
         const parentElement = document.getElementById("listOfExpenses");
@@ -76,7 +76,7 @@ Delete user function, it deletes data from both backend and frontend
 function deleteExpense(expenseid) {
   axios
     .delete(
-      `https://crudcrud.com/api/01eba932762f43fbb6e087074fe3b8b6/expense/${expenseid}`
+      `https://crudcrud.com/api/ec4cd73c76e74460a545a57a3832ef34/expense/${expenseid}`
     )
     .then((response) => {
       console.log(response);

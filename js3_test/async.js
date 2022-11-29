@@ -15,17 +15,17 @@ async function addNewExpense(e) {
   };
 
   console.log(expenseDetails);
-  //   axios
-  //     .post(
-  //       "https://crudcrud.com/api/01eba932762f43fbb6e087074fe3b8b6/expense",
-  //       expenseDetails
-  //     )
-  //     .then((response) => {
-  //       addNewExpensetoUI(response.data);
-  //     })
-  //     .catch((err) => console.log(err));
+  axios
+    .post(
+      "https://crudcrud.com/api/ec4cd73c76e74460a545a57a3832ef34/expense",
+      expenseDetails
+    )
+    .then((response) => {
+      addNewExpensetoUI(response.data);
+    })
+    .catch((err) => console.log(err));
   await fetch(
-    "https://crudcrud.com/api/01eba932762f43fbb6e087074fe3b8b6/expense"
+    "https://crudcrud.com/api/ec4cd73c76e74460a545a57a3832ef34/expense"
   ).then((response) => {
     //addNewExpensetoUI(response.data);
     console.log(response.data);
@@ -41,30 +41,30 @@ it fetches the data from the backend and serves on the screen
 */
 window.addEventListener("DOMContentLoaded", async (event) => {
   const res = await fetch(
-    "https://crudcrud.com/api/01eba932762f43fbb6e087074fe3b8b6/expense"
+    "https://crudcrud.com/api/ec4cd73c76e74460a545a57a3832ef34/expense"
   ).then((response) => {
-    addNewExpensetoUI(response.data);
-    //     .then((res) => {
-    //       data((expense) => {
-    //         const parentElement = document.getElementById("listOfExpenses");
-    //         const expenseElemId = `expense-${expense._id}`;
-    //         parentElement.innerHTML += `
-    //         <li id=${expenseElemId}>
-    //             ₹
-    // ${expense.expenseamount} - ${expense.category} - ${expense.description}
-    //             <button onclick=deleteExpense('${expense._id}')>
-    //                 Delete
-    //             </button>
-    //             <button onclick=editExpense('${expense.expenseamount}','${expense.category}','${expense.description}','${expense._id}')>
-    //                 Edit
-    //             </button>
-    //         </li>`;
-    //         //console.log(expense._id);
-    //       });
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
+    addNewExpensetoUI(response.data)
+      .then((res) => {
+        data((expense) => {
+          const parentElement = document.getElementById("listOfExpenses");
+          const expenseElemId = `expense-${expense._id}`;
+          parentElement.innerHTML += `
+            <li id=${expenseElemId}>
+                ₹
+    ${expense.expenseamount} - ${expense.category} - ${expense.description}
+                <button onclick=deleteExpense('${expense._id}')>
+                    Delete
+                </button>
+                <button onclick=editExpense('${expense.expenseamount}','${expense.category}','${expense.description}','${expense._id}')>
+                    Edit
+                </button>
+            </li>`;
+          //console.log(expense._id);
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   });
 });
 
@@ -87,7 +87,7 @@ Delete user function, it deletes data from both backend and frontend
 */
 async function deleteExpense(expenseid) {
   await fetch(
-    `https://crudcrud.com/api/01eba932762f43fbb6e087074fe3b8b6/expense/${expenseid}`,
+    `https://crudcrud.com/api/ec4cd73c76e74460a545a57a3832ef34/expense/${expenseid}`,
     {
       method: "PUT",
     }
@@ -109,7 +109,7 @@ expense details entered by the user.
 */
 function addNewExpensetoUI(expense) {
   const parentElement = document.getElementById("listOfExpenses");
-  const expenseElemId = `expense-${expense._id}`;
+  const expenseElemId = `expense-${expense.id}`;
   parentElement.innerHTML += `
         <li id=${expenseElemId}>
             ₹
@@ -135,7 +135,7 @@ function removeExpensefromUI(expenseid) {
 
 async function fetchData() {
   const res = await fetch(
-    "https://crudcrud.com/api/01eba932762f43fbb6e087074fe3b8b6/expense"
+    "https://crudcrud.com/api/ec4cd73c76e74460a545a57a3832ef34/expense"
   );
   const data = await res.json();
   console.log(data);
