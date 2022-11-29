@@ -11,11 +11,18 @@ const Cart = (props) => {
   let totalAmount = 0;
 
   cartCtx.items.forEach((item) => {
-    Math.floor((totalAmount = totalAmount + item.price));
+    Math.floor((totalAmount = totalAmount + item.price * item.quantity));
   });
 
-  const cartItemAddHandaler = () => {};
-  const cartItemRemoveHandaler = (item) => {};
+  const cartItemAddHandler = (item) => {
+    cartCtx.addItem({ ...item, quantity: 1 });
+  };
+  const cartItemRemoveHandler = (item) => {
+    // if (item.quantity > 1) {
+    //   cartCtx.addItem({ ...item, quantity: -1 });
+    // } else
+    cartCtx.removeItem(item);
+  };
 
   const cartItems = (
     <ul className={classes["cart-items"]}>
@@ -25,8 +32,8 @@ const Cart = (props) => {
           name={item.name}
           price={item.price}
           amount={item.quantity}
-          onRemove={cartItemRemoveHandaler.bind(null, item.id)}
-          onAdd={cartItemAddHandaler.bind(null, item)}
+          onRemove={cartItemRemoveHandler.bind(null, item)}
+          onAdd={cartItemAddHandler.bind(null, item)}
         />
       ))}
     </ul>
@@ -36,7 +43,7 @@ const Cart = (props) => {
       {cartItems}
       <div className={classes.total}>
         <span>Total Amount</span>
-        <span>${totalAmount}</span>
+        <span>${totalAmount.toFixed(2)}</span>
       </div>
       <div className={classes.actions}>
         <button className={classes["button-alt"]} onClick={props.onClose}>

@@ -8,14 +8,22 @@ const CartProvider = (props) => {
     updateItems([...items, item]);
     console.log("Inside ", CartContext);
   };
-  const removeItemFromCartHandler = (id) => {};
+
+  const removeItemFromCartHandler = (item) => {
+    console.log("removed", items);
+    const newItemArr = [...items];
+    newItemArr.forEach((element, index) => {
+      if (item.id === element.id) {
+        newItemArr.splice(index, 1);
+      }
+    });
+    updateItems(newItemArr);
+  };
 
   const cartContext = {
     items: items,
-    totalAmount: 0,
     addItem: addItemToCartHandler,
     removeItem: removeItemFromCartHandler,
-    message: "Click HERE",
   };
   return (
     <CartContext.Provider value={cartContext}>
