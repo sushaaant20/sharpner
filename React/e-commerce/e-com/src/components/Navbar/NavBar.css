@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Alegreya:wght@400;500&display=swap");
+.me-auto {
+  font-family: "Alegreya", sans-serif;
+  text-align: center;
+}
+.name {
+  color: white;
+}
+.center-navbar {
+  width: 30%;
+  margin-left: 40%;
+}
+#Button {
+  margin-left: 80%;
+}
