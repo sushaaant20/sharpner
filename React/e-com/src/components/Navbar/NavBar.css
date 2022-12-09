@@ -14,3 +14,17 @@
 #Button {
   margin-left: 80%;
 }
+
+.iconClass {
+  position: relative;
+}
+.iconClass span {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  display: block;
+}
+
+a:link {
+  text-decoration: none;
+}

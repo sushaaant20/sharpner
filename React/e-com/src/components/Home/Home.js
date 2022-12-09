@@ -6,7 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./Home.css";
 
-const Home = (props) => {
+const Home = (props, handleAddProduct) => {
   const productsArr = [
     {
       title: "Colors",
@@ -58,7 +58,7 @@ const Home = (props) => {
       >
         <Row className="justify-content-md-center" md={2}>
           {productsArr.map((variant) => (
-            <Col>
+            <Col key={variant.price}>
               <Card
                 border="white"
                 style={{
@@ -78,6 +78,7 @@ const Home = (props) => {
                   <Button
                     variant="outline-secondary"
                     style={{ marginLeft: "20px" }}
+                    onClick={props.handleAddProduct}
                   >
                     Add
                   </Button>
