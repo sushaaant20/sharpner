@@ -5,6 +5,7 @@ import Home from "../Home/Home";
 import About from "../About/About";
 import Store from "../Store/Store";
 import Cart from "../Cart/Cart";
+import MainHome from "../Home/MainHome";
 
 const Routees = (props) => {
   return (
@@ -12,7 +13,11 @@ const Routees = (props) => {
       <Route
         path="/home"
         element={
-          <Home item={props} onAdd={props.onAdd} onRemove={props.onRemove} />
+          <MainHome
+            item={props}
+            onAdd={props.onAdd}
+            onRemove={props.onRemove}
+          />
         }
       />
       <Route
@@ -22,7 +27,12 @@ const Routees = (props) => {
         }
       />
       <Route path="/about" element={<About />} />
-      <Route path="/store" element={<Store />} />
+      <Route
+        path="/store"
+        element={
+          <Home item={props} onAdd={props.onAdd} onRemove={props.onRemove} />
+        }
+      />
       <Route path="/cart" element={<Cart />} />
     </Routes>
   );

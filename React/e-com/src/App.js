@@ -6,6 +6,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Routees from "./components/Routes/Routes";
 import XModal from "./components/Modal/Modal";
 import Home from "./components/Home/Home";
+import Footer from "./components/Footer/Footer";
 
 const App = (props) => {
   const [openModal, setOpenModal] = useState(false);
@@ -38,6 +39,7 @@ const App = (props) => {
       <br></br>
       {/* <Home item={props} onAdd={onAdd} onRemove={onRemove} /> */}
       <Routees item={props} onAdd={onAdd} onRemove={onRemove} />
+      <Footer />
     </Router>
   );
 };
