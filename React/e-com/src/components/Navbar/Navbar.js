@@ -5,7 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Badge from "react-bootstrap/Badge";
 import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Cart from "../Cart/Cart";
 import CartContext from "../../store/cart-context";
 
@@ -15,6 +15,12 @@ function NavBar(props) {
   cartContext.items.forEach((item) => {
     quantity = quantity + Number(item.quantity);
   });
+
+  let activeStyle = {
+    textDecoration: "underline",
+  };
+
+  let activeClassName = "underline";
 
   return (
     <Navbar expand="lg" variant="dark" bg="dark" fixed="top">
@@ -26,24 +32,42 @@ function NavBar(props) {
             marginLeft: "-90px",
           }}
         >
-          <Link to="/home">
+          <NavLink
+            to="/home"
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          >
             <Nav.Link href="#home">HOME</Nav.Link>
-          </Link>
+          </NavLink>
 
-          <Link to="/store">
-            <Nav.Link href="#features">STORE</Nav.Link>
-          </Link>
+          <NavLink
+            to="/store"
+            className={({ isActive }) =>
+              isActive ? activeClassName : undefined
+            }
+          >
+            <Nav.Link
+              href="#features"
+              className={({ isActive }) =>
+                isActive ? activeClassName : undefined
+              }
+            >
+              STORE
+            </Nav.Link>
+          </NavLink>
 
-          <Link to="/about">
+          <NavLink
+            to="/about"
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          >
             <Nav.Link href="#pricing">ABOUT</Nav.Link>
-          </Link>
+          </NavLink>
 
           {/* <Link to="/cart">
             <Nav.Link href="#cart">CART</Nav.Link>
           </Link> */}
         </Nav>
 
-        <Link>
+        <NavLink>
           <Button
             variant="light"
             onClick={props.showModal}
@@ -54,7 +78,7 @@ function NavBar(props) {
               {Number(quantity)}
             </Badge>
           </Button>
-        </Link>
+        </NavLink>
 
         {props.openModal && (
           <Cart

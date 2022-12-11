@@ -36,8 +36,8 @@ const App = (props) => {
       {/* <Cart showModal={showModal} hideModal={hideModal} openModal={openModal} /> */}
       <br></br>
       <br></br>
-      <Home item={props} onAdd={onAdd} onRemove={onRemove} />
-      {/* <Routees item={props} onAdd={onAdd} onRemove={onRemove} /> */}
+      {/* <Home item={props} onAdd={onAdd} onRemove={onRemove} /> */}
+      <Routees item={props} onAdd={onAdd} onRemove={onRemove} />
     </Router>
   );
 };
