@@ -1,41 +1,49 @@
-import React from "react";
+import React, { useContext } from "react";
 import Header from "../UI/Header";
-import Button from "react-bootstrap/Button";
-import { Card, Container } from "react-bootstrap";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import "./Home.css";
+import ProductItem from "./ProductItem";
+import Row from "react-bootstrap/Row";
 
-const Home = (props, handleAddProduct) => {
-  const productsArr = [
-    {
-      title: "Colors",
-      price: 100,
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
-    },
+const PRODUCT_DATA = [
+  {
+    id: 1,
+    title: "Colors",
+    price: 100,
+    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
+  },
 
-    {
-      title: "Black and white Colors",
-      price: 50,
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
-    },
+  {
+    id: 2,
+    title: "Black and white Colors",
+    price: 50,
+    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
+  },
 
-    {
-      title: "Yellow and Black Colors",
-      price: 70,
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
-    },
+  {
+    id: 3,
+    title: "Yellow and Black Colors",
+    price: 70,
+    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
+  },
 
-    {
-      title: "Blue Color",
-      price: 100,
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
-    },
-  ];
+  {
+    id: 4,
+    title: "Blue Color",
+    price: 100,
+    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
+  },
+];
+
+const Home = (props) => {
+  const productList = PRODUCT_DATA.map((item) => (
+    <ProductItem
+      key={item.id}
+      id={item.id}
+      name={item.title}
+      price={item.price}
+      img={item.imageUrl}
+    />
+  ));
 
   return (
     <>
@@ -57,36 +65,7 @@ const Home = (props, handleAddProduct) => {
         }}
       >
         <Row className="justify-content-md-center" md={2}>
-          {productsArr.map((variant) => (
-            <Col key={variant.price}>
-              <Card
-                border="white"
-                style={{
-                  width: "13rem",
-                  background: "white",
-                  fontFamily: "Alegreya",
-                  fontWeight: "500",
-                  padding: "10px",
-                }}
-                className="mb-2 bg"
-              >
-                <Card.Header>{variant.title}</Card.Header>
-                {/* <Card.Body> */}
-                <Card.Img variant="top" src={variant.imageUrl} />
-                <Card.Footer>
-                  ${variant.price}{" "}
-                  <Button
-                    variant="outline-secondary"
-                    style={{ marginLeft: "20px" }}
-                    onClick={props.handleAddProduct}
-                  >
-                    Add
-                  </Button>
-                </Card.Footer>
-                {/* </Card.Body> */}
-              </Card>
-            </Col>
-          ))}
+          {productList}
         </Row>
       </div>
     </>

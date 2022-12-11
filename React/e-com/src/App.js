@@ -1,27 +1,27 @@
 import React, { useState } from "react";
-import Home from "./components/Home/Home";
 
 import NavBar from "./components/Navbar/Navbar";
 import "./App.css";
 import { BrowserRouter as Router } from "react-router-dom";
-import Routees from "./components//Routes/Routes";
-import Cart from "./components/Cart/Cart";
-import { Modal } from "react-bootstrap";
+import Routees from "./components/Routes/Routes";
 import XModal from "./components/Modal/Modal";
+import Home from "./components/Home/Home";
 
 const App = (props) => {
   const [openModal, setOpenModal] = useState(false);
 
   const showModal = () => {
-    console.log("fucj");
     setOpenModal(true);
   };
   const hideModal = () => {
-    console.log("fucj");
     setOpenModal(false);
   };
-  const handleAddProduct = (variant) => {
-    console.log("button clicked", variant);
+  const onAdd = () => {
+    console.log("OnAddClicked clicked");
+  };
+
+  const onRemove = () => {
+    console.log("OnRemove Clicked");
   };
 
   return (
@@ -30,12 +30,14 @@ const App = (props) => {
         showModal={showModal}
         hideModal={hideModal}
         openModal={openModal}
+        onAdd={onAdd}
+        onRemove={onRemove}
       />
-      <XModal />
       {/* <Cart showModal={showModal} hideModal={hideModal} openModal={openModal} /> */}
       <br></br>
       <br></br>
-      <Routees handleAddProduct={handleAddProduct} />
+      <Home item={props} onAdd={onAdd} onRemove={onRemove} />
+      {/* <Routees item={props} onAdd={onAdd} onRemove={onRemove} /> */}
     </Router>
   );
 };

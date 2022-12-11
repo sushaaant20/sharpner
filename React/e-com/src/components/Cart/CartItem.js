@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Card, Container } from "react-bootstrap";
-import Badge from "react-bootstrap/Badge";
 import ListGroup from "react-bootstrap/ListGroup";
 
-const CartItem = (props) => {
-  const price = 0;
+const CartItem = (props, item) => {
+  const price = `${Math.floor(props.price).toFixed(2)}`;
+  console.log(props);
+
   return (
-    <Container style={{ marginTop: "0px", alignItems: "center" }}>
+    <Container style={{ marginTop: "10px", alignItems: "center" }}>
       <Card
-        border="danger"
+        border="light"
         style={{ width: "45rem", marginLeft: "0%", justifyContent: "center" }}
       >
         <ListGroup as="ol">
@@ -20,25 +21,44 @@ const CartItem = (props) => {
               <div className="fw-bold">
                 <img
                   src={props.img}
-                  style={{ height: "60px", width: "60px" }}
+                  style={{ height: "60px", width: "60px", marginRight: "10px" }}
                 ></img>
-                <span style={{ marginRight: "5px" }}>{props.list}</span>
+                {/* <span style={{ marginRight: "5px" }}>{props.list}</span> */}
                 <span>{props.name}</span>
               </div>
             </div>
-            <Badge style={{ marginTop: "10px", alignItems: "center" }}>
-              $ {props.price}
-            </Badge>
+            <h5
+              style={{
+                fontSize: "15px",
+
+                fontWeight: "lighter",
+                marginTop: "15px",
+                alignItems: "center",
+                marginRight: "30px",
+              }}
+            >
+              {props.quantity} x
+            </h5>
+            <h5
+              style={{
+                marginTop: "10px",
+                alignItems: "center",
+                marginRight: "30px",
+              }}
+            >
+              $ {Number(price)}
+            </h5>
             <div style={{ padding: "5px" }}>
               <Button
                 size="sm"
                 variant="danger"
                 style={{ marginRight: "10px" }}
+                onClick={props.onAdd}
               >
-                Add
+                +
               </Button>
-              <Button size="sm" variant="danger">
-                Remove
+              <Button size="sm" variant="danger" onClick={props.onRemove}>
+                -
               </Button>
             </div>
           </ListGroup.Item>

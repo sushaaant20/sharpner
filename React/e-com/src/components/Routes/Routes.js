@@ -6,17 +6,24 @@ import About from "../About/About";
 import Store from "../Store/Store";
 import Cart from "../Cart/Cart";
 
-const Routees = (handleAddProduct) => {
+const Routees = (props) => {
   return (
     <Routes>
       <Route
         path="/home"
-        element={<Home handleAddProduct={handleAddProduct} />}
+        element={
+          <Home item={props} onAdd={props.onAdd} onRemove={props.onRemove} />
+        }
       />
-      <Route path="/" element={<Home handleAddProduct={handleAddProduct} />} />
+      <Route
+        path="/"
+        element={
+          <Home item={props} onAdd={props.onAdd} onRemove={props.onRemove} />
+        }
+      />
       <Route path="/about" element={<About />} />
       <Route path="/store" element={<Store />} />
-      {/* <Route path="/cart" element={<Cart />} /> */}
+      <Route path="/cart" element={<Cart />} />
     </Routes>
   );
 };

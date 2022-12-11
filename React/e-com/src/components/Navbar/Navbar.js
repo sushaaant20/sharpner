@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import "./NavBar.css";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import Modal from "../Modal/Modal";
 import Badge from "react-bootstrap/Badge";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Cart from "../Cart/Cart";
+import CartContext from "../../store/cart-context";
 
 function NavBar(props) {
+  const cartContext = useContext(CartContext);
+  let quantity = 0;
+  cartContext.items.forEach((item) => {
+    quantity = quantity + Number(item.quantity);
+  });
+
   return (
     <Navbar expand="lg" variant="dark" bg="dark" fixed="top">
       <Container>
@@ -45,13 +51,18 @@ function NavBar(props) {
           >
             CART
             <Badge bg="danger" style={{ marginLeft: "5px" }}>
-              0
+              {Number(quantity)}
             </Badge>
           </Button>
         </Link>
 
         {props.openModal && (
-          <Cart closeModal={props.hideModal} showModal={props.showModal} />
+          <Cart
+            closeModal={props.hideModal}
+            showModal={props.showModal}
+            onAdd={props.onAdd}
+            onRemove={props.onRemove}
+          />
         )}
         {/* <Button variant="secondary" onClick={showModal}>
           Cart
