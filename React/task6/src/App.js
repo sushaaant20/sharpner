@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import MoviesList from "./components/MoviesList";
 import "./App.css";
 
 function App() {
+  //useEffect hook
+  useEffect(() => {
+    console.log("USE EFFCT RUN");
+    fetchMoviesHandler();
+  }, []);
+
   const [movies, setMovies] = useState([]);
   //loading data state
   const [isLoading, setIsLoading] = useState(false);
@@ -15,7 +21,7 @@ function App() {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch("https://swapi.dev/api/film");
+      const response = await fetch("https://swapi.dev/api/films");
       if (!response.ok) {
         throw new Error("Something went wrong ....Retrying'");
       }
