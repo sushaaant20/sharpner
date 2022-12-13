@@ -65,6 +65,10 @@ function NavBar(props) {
           {/* <Link to="/cart">
             <Nav.Link href="#cart">CART</Nav.Link>
           </Link> */}
+
+          <NavLink to="/contactUs">
+            <Nav.Link href="#contactUs">Contact Us</Nav.Link>
+          </NavLink>
         </Nav>
 
         <NavLink>

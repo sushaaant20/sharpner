@@ -6,6 +6,7 @@ import About from "../About/About";
 import Store from "../Store/Store";
 import Cart from "../Cart/Cart";
 import MainHome from "../Home/MainHome";
+import { ContactUs } from "../ContactUs/ContactUs";
 
 const Routees = (props) => {
   return (
@@ -34,6 +35,7 @@ const Routees = (props) => {
         }
       />
       <Route path="/cart" element={<Cart />} />
+      <Route path="/contactUs" element={<ContactUs />} />
     </Routes>
   );
 };
