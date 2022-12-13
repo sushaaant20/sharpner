@@ -3,6 +3,9 @@ import Header from "../UI/Header";
 import "./Home.css";
 import ProductItem from "./ProductItem";
 import Row from "react-bootstrap/Row";
+import { Nav } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import data from "../Data/Data";
 
 const PRODUCT_DATA = [
   {
@@ -35,14 +38,16 @@ const PRODUCT_DATA = [
 ];
 
 const Home = (props) => {
-  const productList = PRODUCT_DATA.map((item) => (
-    <ProductItem
-      key={item.id}
-      id={item.id}
-      name={item.title}
-      price={item.price}
-      img={item.imageUrl}
-    />
+  const productList = data.map((item) => (
+    <NavLink to={`/product/${item.id}`}>
+      <ProductItem
+        key={item.id}
+        id={item.id}
+        name={item.title}
+        price={item.price}
+        img={item.imageUrl}
+      />
+    </NavLink>
   ));
 
   return (

@@ -39,7 +39,7 @@ const App = (props) => {
       <br></br>
       {/* <Home item={props} onAdd={onAdd} onRemove={onRemove} /> */}
       <Routees item={props} onAdd={onAdd} onRemove={onRemove} />
-      <Footer />
+      {/* <Footer /> */}
     </Router>
   );
 };

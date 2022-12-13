@@ -1,12 +1,12 @@
 import React from "react";
 
-import { Route, Routes, NavLink } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Home from "../Home/Home";
 import About from "../About/About";
-import Store from "../Store/Store";
 import Cart from "../Cart/Cart";
 import MainHome from "../Home/MainHome";
 import { ContactUs } from "../ContactUs/ContactUs";
+import Products from "../Products/Products";
 
 const Routees = (props) => {
   return (
@@ -35,6 +35,7 @@ const Routees = (props) => {
         }
       />
       <Route path="/cart" element={<Cart />} />
+      <Route path="/product/:id" element={<Products />} />
       <Route path="/contactUs" element={<ContactUs />} />
     </Routes>
   );

@@ -1,7 +1,7 @@
 const data = [
   {
     id: 1,
-    title: "LASUN",
+    title: "Colors",
     price: 100,
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
   },

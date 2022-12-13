@@ -10,7 +10,7 @@ const ProductItem = (props) => {
   return (
     <Col id={props.id}>
       <Card
-        border="white"
+        border="black"
         label="Amount"
         input={{
           id: "amount_",
