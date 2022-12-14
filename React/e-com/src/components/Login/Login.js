@@ -50,7 +50,7 @@ const Login = () => {
         // );
         ctx.login(data.idToken);
         localStorage.setItem("token", data.idToken);
-        console.log(data.idToken);
+
         navigate("/store");
       })
       .catch((err) => {
