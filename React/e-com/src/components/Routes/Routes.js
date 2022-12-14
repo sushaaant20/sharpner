@@ -7,6 +7,7 @@ import Cart from "../Cart/Cart";
 import MainHome from "../Home/MainHome";
 import { ContactUs } from "../ContactUs/ContactUs";
 import Products from "../Products/Products";
+import Login from "../Login/Login";
 
 const Routees = (props) => {
   return (
@@ -28,6 +29,7 @@ const Routees = (props) => {
         }
       />
       <Route path="/about" element={<About />} />
+      <Route path="login" element={<Login />} />
       <Route
         path="/store"
         element={

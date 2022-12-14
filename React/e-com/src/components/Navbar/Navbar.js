@@ -62,12 +62,19 @@ function NavBar(props) {
             <Nav.Link href="#pricing">ABOUT</Nav.Link>
           </NavLink>
 
+          <NavLink
+            to="/login"
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          >
+            <Nav.Link href="#login">LOGIN</Nav.Link>
+          </NavLink>
+
           {/* <Link to="/cart">
             <Nav.Link href="#cart">CART</Nav.Link>
           </Link> */}
 
           <NavLink to="/contactUs">
-            <Nav.Link href="#contactUs">Contact Us</Nav.Link>
+            <Nav.Link href="#contactUs">CONTACT US</Nav.Link>
           </NavLink>
         </Nav>
 
