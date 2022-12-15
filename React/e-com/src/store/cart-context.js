@@ -6,6 +6,7 @@ const CartContext = React.createContext({
   addItem: () => {},
   removeItem: () => {},
   message: "CONEEETi",
+  empty: [],
 });
 
 export default CartContext;

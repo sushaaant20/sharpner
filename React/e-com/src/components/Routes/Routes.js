@@ -12,6 +12,9 @@ import AuthContext from "../../store/auth-contex";
 import { Nav } from "react-bootstrap";
 
 const Routees = (props) => {
+  const onCartClick = () => {
+    console.log("CLikc");
+  };
   const ctx = useContext(AuthContext);
   return (
     <Routes>

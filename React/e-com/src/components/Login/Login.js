@@ -1,8 +1,10 @@
 import React, { useState, useContext, useRef } from "react";
 import { Card, Container, Form, Row, Col, Button } from "react-bootstrap";
 import Header from "../UI/Header";
+import axios from "axios";
 import AuthContext from "../../store/auth-contex";
 import { useNavigate } from "react-router-dom";
+import CartContext from "../../store/cart-context";
 
 const Login = () => {
   const emailRef = useRef("");
@@ -10,14 +12,32 @@ const Login = () => {
   const navigate = useNavigate();
 
   const ctx = useContext(AuthContext);
+  const Cartctx = useContext(CartContext);
+  const formattedEmail = Cartctx.userEmail;
 
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+
+  const onCartClickHander = async () => {
+    await axios
+      .get(
+        `https://crudcrud.com/api/3df8f823cd5f4ceca0027adedf3cc7c6/cart${formattedEmail}`
+      )
+      .then((res) => {
+        console.log(res);
+        Cartctx.addItem(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // setReceivedData(response.data[0].elements);
+  };
 
   const submitFormHandler = (event) => {
     event.preventDefault();
     const enteredEmail = emailRef.current.value;
     const enteredPassword = passwordRef.current.value;
+    // onCartClickHander();
 
     let url =
       "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCjXn3ZuxwRU-mb7uz8vrpXFkfFPQfxZWY";
@@ -48,8 +68,10 @@ const Login = () => {
         // const expirationTime = new Date(
         //   new Date().getTime() + Number(data.expiresIn * 1000)
         // );
+        console.log(data);
         ctx.login(data.idToken);
         localStorage.setItem("token", data.idToken);
+        localStorage.setItem("email", data.email);
 
         navigate("/store");
       })

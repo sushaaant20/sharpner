@@ -9,9 +9,10 @@ const ProductitemForm = (props) => {
   const addItemToCart = (event) => {
     event.preventDefault();
     const quantity = 1;
+    console.log(props.items);
     cartCntx.addItem({ ...props.items, quantity: quantity });
-    console.log("After:", cartCntx);
   };
+
   return (
     <Card.Footer>
       ${props.price}

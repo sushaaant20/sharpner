@@ -5,12 +5,14 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Badge from "react-bootstrap/Badge";
 import { Button } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { NavLink, Navigate } from "react-router-dom";
 import Cart from "../Cart/Cart";
 import CartContext from "../../store/cart-context";
+import AuthContext from "../../store/auth-contex";
 
 function NavBar(props) {
   const cartContext = useContext(CartContext);
+  const ctx = useContext(AuthContext);
   let quantity = 0;
   cartContext.items.forEach((item) => {
     quantity = quantity + Number(item.quantity);
@@ -21,6 +23,12 @@ function NavBar(props) {
   };
 
   let activeClassName = "underline";
+
+  const logoutHandler = () => {
+    ctx.logout();
+    <Navigate to="/login" />;
+    cartContext.empty();
+  };
 
   return (
     <Navbar expand="lg" variant="dark" bg="dark" fixed="top">
@@ -77,7 +85,7 @@ function NavBar(props) {
             <Nav.Link href="#contactUs">CONTACT US</Nav.Link>
           </NavLink>
         </Nav>
-
+        <Button onClick={logoutHandler}>LOGOUT</Button>
         <NavLink>
           <Button
             variant="light"
@@ -97,6 +105,7 @@ function NavBar(props) {
             showModal={props.showModal}
             onAdd={props.onAdd}
             onRemove={props.onRemove}
+            onClick={props.onCart}
           />
         )}
         {/* <Button variant="secondary" onClick={showModal}>

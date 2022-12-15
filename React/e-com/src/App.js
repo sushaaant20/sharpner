@@ -24,7 +24,9 @@ const App = (props) => {
   const onRemove = () => {
     console.log("OnRemove Clicked");
   };
-
+  const onCart = () => {
+    console.log("cliclk");
+  };
   return (
     <Router>
       <NavBar
@@ -33,6 +35,7 @@ const App = (props) => {
         openModal={openModal}
         onAdd={onAdd}
         onRemove={onRemove}
+        onCart={onCart}
       />
       {/* <Cart showModal={showModal} hideModal={hideModal} openModal={openModal} /> */}
       <br></br>

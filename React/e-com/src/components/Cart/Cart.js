@@ -1,14 +1,21 @@
-import React, { useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import CartContext from "../../store/cart-context";
 import CartItem from "./CartItem";
 import { Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
+import axios from "axios";
 
 const Cart = (props) => {
+  const [cartItem, setCartItem] = useState(false);
   const ctx = useContext(CartContext);
+
+  const [receivedData, setReceivedData] = useState([]);
+
   const hasItems = ctx.items.length > 0;
 
-  console.log("CART =>" + props);
+  let totalQuantity = 0;
+
+  const formattedEmail = ctx.userEmail;
 
   let totalAmount = 0;
   ctx.items.forEach((item) => {
@@ -17,11 +24,15 @@ const Cart = (props) => {
 
   const cartItemAddHandler = (item) => {
     ctx.addItem({ ...item, quantity: 1 });
+    setCartItem(true);
     console.log(item);
   };
   const cartItemRemoveHandler = (item) => {
     ctx.removeItem(item);
   };
+  // const onCartClickHander = async () => {
+
+  // };
 
   const cartItems = (
     <ul>
@@ -51,34 +62,38 @@ const Cart = (props) => {
       <Modal.Header closeButton>
         <Modal.Title>CART ITEMS</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
-        <Modal.Title
-          style={{
-            fontSize: "20px",
-            fontSize: "19px",
-            fontWeight: "200",
-            display: "flex",
-            justifyContent: "right",
-            marginRight: "90px",
-          }}
-        >
-          <span
+      {cartItem && <p>Empty Cart</p>}
+      {!cartItem && (
+        <Modal.Body>
+          <Modal.Title
             style={{
-              marginRight: "20px",
+              fontSize: "20px",
+              fontSize: "19px",
+              fontWeight: "200",
+              display: "flex",
+              justifyContent: "right",
+              marginRight: "90px",
             }}
           >
-            Quantity
-          </span>
-          <span
-            style={{
-              marginRight: "20px",
-            }}
-          >
-            Amount
-          </span>
-        </Modal.Title>
-        {cartItems}
-      </Modal.Body>
+            <span
+              style={{
+                marginRight: "20px",
+              }}
+            >
+              Quantity
+            </span>
+            <span
+              style={{
+                marginRight: "20px",
+              }}
+            >
+              Amount
+            </span>
+          </Modal.Title>
+          {cartItems}
+        </Modal.Body>
+      )}
+
       <Modal.Footer
         style={{
           justifyContent: "space-between",
