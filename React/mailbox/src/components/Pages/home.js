@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { Button } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
@@ -12,25 +13,31 @@ function Home() {
     navigate("/", { replace: true });
   };
   return (
-    <Navbar bg="dark">
-      <Container>
-        <Navbar.Brand href="#home" className="text-white">
-          MAILBOX CLIENT
-        </Navbar.Brand>
-        <Navbar.Collapse className="justify-content-end text-white">
-          <Navbar.Text className="text-white">
-            Signed in as :{"    "}
-            <p>{email}</p>
-          </Navbar.Text>
-          <Button
-            style={{ marginLeft: "20px", marginRight: "-90px" }}
-            onClick={logOutHandler}
-          >
-            Logout
-          </Button>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <Fragment>
+      <Navbar bg="dark">
+        <Container>
+          <Navbar.Brand href="#home" className="text-white">
+            MAILBOX CLIENT
+          </Navbar.Brand>
+          <Navbar.Collapse className="justify-content-end text-white">
+            <Navbar.Text className="text-white">
+              Signed in as :{"    "}
+              <p>{email}</p>
+            </Navbar.Text>
+            <Button
+              style={{ marginLeft: "20px", marginRight: "-90px" }}
+              onClick={logOutHandler}
+            >
+              Logout
+            </Button>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+
+      {/* Body After Login */}
+
+      <h1> Welcome {email} to your inbox</h1>
+    </Fragment>
   );
 }
 
