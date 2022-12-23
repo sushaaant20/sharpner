@@ -3,6 +3,10 @@ import { Button } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import { useNavigate } from "react-router-dom";
+import { Editor } from "react-draft-wysiwyg";
+import { Card } from "react-bootstrap";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import ComposeMail from "../Mailbox/ComposeMail";
 
 function Home() {
   const navigate = useNavigate();
@@ -14,7 +18,7 @@ function Home() {
   };
   return (
     <Fragment>
-      <Navbar bg="dark">
+      <Navbar bg="dark" style={{ padding: "10px", marginBottom: "10px" }}>
         <Container>
           <Navbar.Brand href="#home" className="text-white">
             MAILBOX CLIENT
@@ -33,10 +37,7 @@ function Home() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-
-      {/* Body After Login */}
-
-      <h1> Welcome {email} to your inbox</h1>
+      <ComposeMail />
     </Fragment>
   );
 }
